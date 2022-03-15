@@ -20,4 +20,31 @@ public class AsignaturaServiceImpl implements AsignaturaService{
 		return repoJPA.findAll();
 	}
 
+	@Override
+	public Asignaturas getById(Integer id) {
+		return repoJPA.findById(id).orElse(null);
+	}
+
+	@Override
+	public void borrarTodo() {
+		repoJPA.deleteAll();
+		
+	}
+
+	@Override
+	public void borrarPorId(Integer id) {
+		repoJPA.deleteById(id);
+		
+	}
+
+	@Override
+	public Asignaturas modificar(Asignaturas asi) {
+		return repoJPA.save(asi);
+	}
+
+	@Override
+	public Asignaturas inserta(Asignaturas asi) {
+		return repoJPA.save(asi);
+	}
+
 }
