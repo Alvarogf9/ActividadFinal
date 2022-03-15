@@ -141,7 +141,7 @@ public class AsignaturaRestControler {
 	
 	@CacheEvict(value="asiganturas", allEntries=true)
 	@PostMapping
-	public ResponseEntity<Asignaturas> insertarEmpleado_v3 (@RequestBody Asignaturas asi) {
+	public ResponseEntity<Asignaturas> insertar (@RequestBody Asignaturas asi) {
 		try {
 			HttpHeaders headers = new HttpHeaders();
 			if (asi.getId()!=null) {
