@@ -30,7 +30,7 @@ public class WebAsignaturaController {
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/listarAsignaturas")
-	public String listarEmp(Model model) {
+	public String listarEmp(Model model) throws Exception {
 		model.addAttribute("listaAS", asignaturaService.listar());
 		return "listarAsignaturas";
 	}

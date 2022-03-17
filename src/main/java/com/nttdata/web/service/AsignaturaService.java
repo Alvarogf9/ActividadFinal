@@ -6,15 +6,15 @@ import com.nttdata.web.repository.entity.Asignaturas;
 
 public interface AsignaturaService {
 
-	public List<Asignaturas> listar();
+	public List<Asignaturas> listar() throws Exception;
 
-	public Asignaturas getById(Integer id);
+	public Asignaturas getById(Integer id)  throws Exception;
 
-	public void borrarTodo();
+	public void borrarTodo() throws Exception;
 
-	public void borrarPorId(Integer id);
+	public void borrarPorId(Integer id) throws Exception;
 
-	public Asignaturas modificar(Asignaturas asi);
+	public Asignaturas modificar(Asignaturas asi) throws Exception;
 
-	public Asignaturas inserta(Asignaturas asi);
+	public Asignaturas inserta(Asignaturas asi) throws Exception;
 }

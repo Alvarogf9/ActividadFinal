@@ -29,8 +29,8 @@ public class AsignaturaRestControler {
 	AsignaturaService asignaturaService;
 	
 	@GetMapping
-	@Cacheable(value="asiganturas")
-	public ResponseEntity<List<Asignaturas>> consultarTodos(){
+	@Cacheable(value="asignaturas")
+	public ResponseEntity<List<Asignaturas>> consultarTodos() {
 		try {
 			HttpHeaders headers = new HttpHeaders();
 			List<Asignaturas> list = asignaturaService.listar();
@@ -70,7 +70,7 @@ public class AsignaturaRestControler {
 	}
 	
 	@DeleteMapping
-	@CacheEvict(value="asiganturas",allEntries = true)
+	@CacheEvict(value="asignaturas",allEntries = true)
 	public ResponseEntity<Asignaturas> eliminarTodo(){
 		try {
 			HttpHeaders headers = new HttpHeaders();
@@ -87,19 +87,23 @@ public class AsignaturaRestControler {
 	
 	
 	@DeleteMapping(value="/{id}")
-	@CacheEvict(value="asiganturas",allEntries = true)
+	@CacheEvict(value="asignaturas",allEntries = true)
 	public ResponseEntity<List<Asignaturas>> eliminarPorId(@PathVariable("id") Integer id){
 		try {
+			
+			
 				HttpHeaders headers = new HttpHeaders();
-				if (asignaturaService.getById(id)==null) {
-					headers.set("Message","La asignatura no se puede borrar puesto que no existe");
+				if(id==null) {
+					headers.set("Message","La id no puede ser null");
 					return new ResponseEntity<>(headers, HttpStatus.NOT_FOUND);
 				}
+				
 				else {
 					asignaturaService.borrarPorId(id);
 					headers.set("Message","Se ha eliminado las asignatura");
 					return new ResponseEntity<List<Asignaturas>>(asignaturaService.listar(),headers, HttpStatus.OK);
-				}
+
+					}
 				
 			}
 			
@@ -111,7 +115,7 @@ public class AsignaturaRestControler {
 	
 	
 	@PutMapping
-	@CacheEvict(value="asiganturas",allEntries = true)
+	@CacheEvict(value="asignaturas",allEntries = true)
 	public ResponseEntity<Asignaturas> modificar(@RequestBody Asignaturas asi){
 		try {
 				HttpHeaders headers = new HttpHeaders();
@@ -139,7 +143,7 @@ public class AsignaturaRestControler {
 		}
 	}
 	
-	@CacheEvict(value="asiganturas", allEntries=true)
+	@CacheEvict(value="asignaturas", allEntries=true)
 	@PostMapping
 	public ResponseEntity<Asignaturas> insertar (@RequestBody Asignaturas asi) {
 		try {
